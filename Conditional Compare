@@ -1,0 +1,99 @@
+org 100h
+
+.DATA
+ 
+NUM1 db ?
+NUM2 db ?
+CON1 db ?
+MSG1 DB "Enter first Number: $" 
+MSG2 DB 10,13,"Enter second Number: $" 
+MSGCON1 DB 10,13,"Greater Number is: $"  
+MSGCON2 DB 10,13,"numbers are Not Equal $"
+MSG3 DB 10,13,"Enter Third Number: $"
+
+.CODE
+
+LEA DX, MSG1
+MOV AH, 09
+INT 21H
+
+ 
+MOV AH, 01
+INT 21H    
+SUB AL, 30H 
+MOV BL, AL
+MOV NUM1, BL
+      
+     
+LEA DX, MSG2
+MOV AH, 09
+INT 21H
+   
+MOV AH,01
+INT 21H
+SUB AL,30H 
+MOV BL, AL
+MOV NUM2,BL
+
+
+CMP NUM1,BL
+JG L1
+
+
+
+L2:
+
+MOV CL, BL
+JMP newInput  
+HLT
+
+
+L1:  
+ 
+MOV CL, NUM1
+JMP newInput
+HLT
+       
+       
+newInput:
+LEA DX, MSG3
+MOV AH, 09
+INT 21H
+
+MOV AH, 01
+INT 21H    
+SUB AL, 30H 
+MOV BL, AL
+MOV CON1, BL
+
+CMP CL,BL
+JG L3
+
+
+L4:
+LEA DX, MSGCON1
+MOV AH, 09
+INT 21H  
+
+MOV DL,BL
+ADD DL,30H
+MOV Ah,02
+INT 21H  
+MOV CL, BL
+HLT
+
+
+L3:  
+ 
+LEA DX, MSGCON1
+MOV AH, 09
+INT 21H  
+
+MOV DL,CL
+ADD DL,30H
+MOV Ah,02
+INT 21H  
+MOV CL, NUM1
+
+HLT 
+HLT
