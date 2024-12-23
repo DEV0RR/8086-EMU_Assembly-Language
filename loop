@@ -1,0 +1,32 @@
+org 100h
+.DATA
+ 
+NUM1 db ?
+MSG1 DB "Enter Number FOR loop: $" 
+
+
+
+.CODE
+
+
+MOV BL,0
+
+L1:   
+
+MOV DL,BL 
+ADD DL, 30H
+MOV AH,2
+INT 21H
+  
+MOV AH,2 
+MOV DX, 10
+INT 21H
+MOV DX,13
+INT 21H 
+ADD BL,1
+
+
+
+CMP BL,9
+JLE L1
+
