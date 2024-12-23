@@ -1,0 +1,84 @@
+;; Take 3 number from user and place them in the stack by push, then display them by pop       
+
+ORG 100h
+
+.DATA
+NUM1 DB ?              	 
+MSG1 DB "Enter 1st Number: $"  
+MSG2 DB 10,13,"Enter 2nd Number: $"
+MSG3 DB 10,13,"Enter 3rd Number: $"
+MSG4 DB 10,13,"Number are: $"
+
+
+.CODE
+
+LEA DX, MSG1
+MOV AH, 09
+INT 21H
+
+;PUSH
+MOV AH, 01
+INT 21H
+SUB AX, 30H           	 
+MOV BX,AX
+PUSH BX  
+
+      
+LEA DX, MSG2
+MOV AH, 09
+INT 21H
+
+
+MOV AH, 01
+INT 21H
+SUB AX, 30H           	 
+MOV BX,AX
+PUSH BX  
+
+
+LEA DX, MSG3
+MOV AH, 09
+INT 21H
+
+
+MOV AH, 01
+INT 21H
+SUB AX, 30H           	 
+MOV BX,AX
+PUSH BX   
+
+
+;space
+MOV AH, 02
+MOV DX,10
+INT 21H
+MOV DX,13
+INT 21H
+
+;POP
+POP DX
+MOV AH, 02
+ADD DX,30H
+INT 21H 
+MOV DX,10
+INT 21H
+MOV DX,13
+INT 21H
+
+POP DX
+MOV AH, 02
+ADD DX,30H
+INT 21H
+MOV DX,10
+INT 21H
+MOV DX,13
+INT 21H
+
+POP DX
+MOV AH, 02
+ADD DX,30H
+INT 21H
+MOV DX,10
+INT 21H
+MOV DX,13
+INT 21H
