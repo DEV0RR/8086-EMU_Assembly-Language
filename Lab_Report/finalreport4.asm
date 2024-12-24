@@ -4,24 +4,24 @@ org 100h
 
 .CODE
 
-MOV BL, 1 ;;first odd number        
-MOV CL, 5 ;;Number of odd number to display
+MOV BL, 1  ;;start number
+MOV CL, 5  ;;numer of odd number
 
-L1:       
+L1:                
     
-    ;;Display BL
-    MOV DL, BL   
-    ADD DL, 30H  
-    MOV AH, 2    
-    INT 21H 
+    ;;display ODD number
+    MOV DL, BL
+    ADD DL, 30H
+    MOV AH, 2
+    INT 21H
     
-    ;;Space
+    ;;space
     MOV AH,2 
-    MOV DX,9
+    MOV DX, 10
     INT 21H
     MOV DX,13
-    INT 21H    
+    INT 21H   
 
-    ;;Increase by 2
-    ADD BL, 2  
-    LOOP L1      
+    ;;increase by 2
+    ADD BL, 2
+    LOOP L1
