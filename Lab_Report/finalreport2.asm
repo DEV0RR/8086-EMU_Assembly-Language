@@ -1,12 +1,40 @@
-F 6 (9 tay delivery dite hobe) 
+;; 2. Write an Assembly program to determine and display whether a number is odd or even.
+ORG 100h
 
-Chicken sub with cheese 1 ta 
-Maxican chicken pasta 1 ta 
-Sweet lacchi large  1 ta
+.DATA
+NUM1 DB ?                   
+MSG1 DB "Enter a Number: $" 
+MSG2 DB 10,13,"Odd Number $" 
+MSG3 DB 10,13,"Even Number $" 
 
-address: Nalapara moshjid er pasher building, 7th floor 
-01767839467
+.CODE
 
-Fb 350
-Dc 50
-Tb 400
+;;Enter Number
+LEA DX, MSG1
+MOV AH, 09
+INT 21H
+MOV AH, 01
+INT 21H
+SUB AL, 30H                
+MOV NUM1, AL              
+
+;; Divide by 2
+MOV BL, 02               
+DIV BL                     
+
+;; Comparison
+CMP AH, 0                  
+JE L2              
+
+L1:
+LEA DX, MSG2
+MOV AH, 09
+INT 21H           
+HLT          
+
+L2:
+LEA DX, MSG3
+MOV AH, 09
+INT 21H
+HLT
+                   
